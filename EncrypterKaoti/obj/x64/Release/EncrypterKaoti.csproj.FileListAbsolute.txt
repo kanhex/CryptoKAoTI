@@ -1,0 +1,14 @@
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\bin\x64\Release\EncrypterKaoti.exe.config
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\bin\x64\Release\EncrypterKaoti.exe
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\bin\x64\Release\EncrypterKaoti.pdb
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\obj\x64\Release\EncrypterKaoti.crypto.resources
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\obj\x64\Release\EncrypterKaoti.dialogD.resources
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\obj\x64\Release\EncrypterKaoti.dialog.resources
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\obj\x64\Release\EncrypterKaoti.decryptForm.resources
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\obj\x64\Release\EncrypterKaoti.encryptForm.resources
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\obj\x64\Release\EncrypterKaoti.Properties.Resources.resources
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\obj\x64\Release\EncrypterKaoti.csproj.GenerateResource.cache
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\obj\x64\Release\EncrypterKaoti.csproj.CoreCompileInputs.cache
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\obj\x64\Release\EncrypterKaoti.exe
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\obj\x64\Release\EncrypterKaoti.pdb
+G:\frangg16\Documents\kao\EncrypterKaoti\EncrypterKaoti\obj\x64\Release\EncrypterKaoti.csprojAssemblyReference.cache
