@@ -46,3 +46,17 @@ C:\Games\EncrypterKaoti\EncrypterKaoti\bin\x64\Debug\EncrypterKaoti.exe
 C:\Games\EncrypterKaoti\EncrypterKaoti\bin\x64\Debug\EncrypterKaoti.pdb
 C:\Games\EncrypterKaoti\EncrypterKaoti\obj\Debug\EncrypterKaoti.dialogD.resources
 C:\Games\EncrypterKaoti\EncrypterKaoti\obj\Debug\EncrypterKaoti.decryptForm.resources
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\bin\x64\Debug\EncrypterKaoti.exe.config
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\bin\x64\Debug\EncrypterKaoti.exe
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\bin\x64\Debug\EncrypterKaoti.pdb
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.csprojAssemblyReference.cache
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.crypto.resources
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.dialogD.resources
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.dialog.resources
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.decryptForm.resources
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.encryptForm.resources
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.Properties.Resources.resources
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.csproj.GenerateResource.cache
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.csproj.CoreCompileInputs.cache
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.exe
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.pdb

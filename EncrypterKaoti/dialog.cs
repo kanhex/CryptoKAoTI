@@ -41,6 +41,7 @@ namespace EncrypterKaoti
         delegate void RefreshProgressDelegate(int percent);
         delegate void RefreshProgress2Delegate(int percent);
         delegate void RefreshTextDelegate(string text);
+        delegate void RefreshDataDelegate(string text);
 
         public void RefreshProgress(int value)
         {
@@ -57,7 +58,12 @@ namespace EncrypterKaoti
             if (this == null) return;
             textBox1.AppendText(Text);
         }
-
+        public void RefreshData(string Text)
+        {
+            if (this == null) return;
+            statusLbl.Text = Text;
+        }
+        
         void EncryptProcess()
         {
 
@@ -71,6 +77,8 @@ namespace EncrypterKaoti
                     this.Invoke(new RefreshProgressDelegate(RefreshProgress), 7);
                     this.Invoke(new RefreshTextDelegate(RefreshText), "Starting Encryption with a chunk size of 20000. \n");
                     encryptFile(100000, filename, passwordBytes);
+
+                    this.Invoke(new RefreshProgressDelegate(RefreshProgress), 100);
                     this.Invoke(new RefreshTextDelegate(RefreshText), "Finished! \n");
                     MessageBox.Show("Encrypted");
                     encryptThread.Abort();
@@ -108,6 +116,7 @@ namespace EncrypterKaoti
                         int remaining = chunkSize, bytesRead;
                         while (remaining > 0 && (bytesRead = input.Read(buffer, 0, Math.Min(remaining, BUFFER_SIZE))) > 0)
                         {
+                            
                             this.Invoke(new RefreshProgress2Delegate(RefreshProgress2), 0);
                             buffer = encriptArray(buffer, passwordBytes);
                             output.Write(buffer, 0, bytesRead);
@@ -164,6 +173,12 @@ namespace EncrypterKaoti
                             {
                                 break;
                             }
+                            //long total: 2249999850 File: 100%
+                            //     index:   660         File:    64.551.000     
+                            //               x1.000.000
+
+
+
 
                             chunkBytesRead += bytesRead;
                         }
@@ -173,8 +188,15 @@ namespace EncrypterKaoti
                         output.Write(encriptArray(buffer, passwordBytes), 0, chunkBytesRead);
 
                     }
-                    this.Invoke(new RefreshProgressDelegate(RefreshProgress), Convert.ToInt32((index / input.Length) * 70));
-                    this.Invoke(new RefreshTextDelegate(RefreshText), "Encrypting... " + Convert.ToString(Convert.ToInt32((index / input.Length) * 100)) + "%. \n");
+                    //zpн*f&jc/uj$M3p=Ohw0ЩЩhґx1lL*
+                    long ind = index;
+                    long longi = input.Length;
+                    var total = (1000000 * 7 * ind / longi).ToString();
+                    var total10 = (1000000 * 10 * ind / longi).ToString();
+
+                    this.Invoke(new RefreshTextDelegate(RefreshData), "Index: "+ index+"  |  Longitud total: "+input.Length+"        |    percent: "+ total10);
+                    this.Invoke(new RefreshProgressDelegate(RefreshProgress), Convert.ToInt32(total));
+                    this.Invoke(new RefreshTextDelegate(RefreshText), "Encrypting... " + Convert.ToInt32(total10) + "%. \n");
                     index++;
                 }
             }

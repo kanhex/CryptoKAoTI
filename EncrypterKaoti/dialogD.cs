@@ -41,6 +41,7 @@ namespace EncrypterKaoti
         delegate void RefreshProgressDelegate(int percent);
         delegate void RefreshProgress2Delegate(int percent);
         delegate void RefreshTextDelegate(string text);
+        delegate void RefreshDataDelegate(string text);
 
         public void RefreshProgress(int value)
         {
@@ -57,6 +58,11 @@ namespace EncrypterKaoti
             if (this == null) return;
             textBox1.AppendText(Text);
         }
+        public void RefreshData(string Text)
+        {
+            if (this == null) return;
+            statusLbl.Text = Text;
+        }
 
         void decryptProcess()
         {
@@ -71,6 +77,7 @@ namespace EncrypterKaoti
                     this.Invoke(new RefreshProgressDelegate(RefreshProgress), 7);
                     this.Invoke(new RefreshTextDelegate(RefreshText), "Starting decryption with a chunk size of 100000. \n");
                     SplitFile(100000, filename, passwordBytes);
+                    this.Invoke(new RefreshProgressDelegate(RefreshProgress), 100);
                     this.Invoke(new RefreshTextDelegate(RefreshText), "Finished! \n");
                     MessageBox.Show("Decrypted");
                     decryptThread.Abort();
@@ -192,8 +199,17 @@ namespace EncrypterKaoti
                         output.Write(decryptArray(buffer, passwordBytes), 0, chunkBytesRead);
 
                     }
-                    this.Invoke(new RefreshProgressDelegate(RefreshProgress), Convert.ToInt32((index / input.Length) * 70));
-                    this.Invoke(new RefreshTextDelegate(RefreshText), "Decrypting... " + Convert.ToString(Convert.ToInt32((index / input.Length) * 100)) + "%. \n");
+
+
+                    long ind = index;
+                    long longi = input.Length;
+                    var total = (1000000 * 7 * ind / longi).ToString();
+                    var total10 = (1000000 * 10 * ind / longi).ToString();
+
+                    this.Invoke(new RefreshTextDelegate(RefreshData), "Index: " + index + "  |  Longitud total: " + input.Length + "        |    percent: " + total);
+                    this.Invoke(new RefreshProgressDelegate(RefreshProgress), Convert.ToInt32(total));
+                    this.Invoke(new RefreshTextDelegate(RefreshText), "Decrypting... " + Convert.ToInt32(total10) + "%. \n");
+                    
                     index++;
                 }
             }

@@ -27,7 +27,7 @@ namespace EncrypterKaoti
 
             // Set your salt here, change it to meet your flavor:
             // The salt bytes must be at least 8 bytes.
-            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8};
+            byte[] saltBytes = new byte[] { 2, 0, 0, 4, 0, 3, 0, 3};
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -35,13 +35,13 @@ namespace EncrypterKaoti
                 {
 
                     AES.KeySize = 256;
-                    AES.BlockSize = 128;
+                    AES.BlockSize = 256;
                     AES.Padding = PaddingMode.None;
                     var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000);
                     AES.Key = key.GetBytes(AES.KeySize / 8);
                     AES.IV = key.GetBytes(AES.BlockSize / 8);
 
-                    AES.Mode = CipherMode.CBC;
+                    AES.Mode = CipherMode.CFB;
                      
                         using (var cs = new CryptoStream(ms, AES.CreateDecryptor(), CryptoStreamMode.Write))
                             {
