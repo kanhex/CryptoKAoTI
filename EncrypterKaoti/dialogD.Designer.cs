@@ -158,6 +158,7 @@
             this.Controls.Add(this.Progress);
             this.Controls.Add(this.stopBtn);
             this.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "dialogD";
             this.Text = "dialog";

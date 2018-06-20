@@ -96,7 +96,7 @@ namespace EncrypterKaoti
                     
                     this.Invoke(new RefreshProgressDelegate(RefreshProgress), 7);
                     this.Invoke(new RefreshTextDelegate(RefreshText), "Starting Encryption with a chunk size of 100000. \n");
-                    encryptFile(100000, filename, passwordBytes);
+                    encryptFile(500000, filename, passwordBytes);
 
                     this.Invoke(new RefreshProgressDelegate(RefreshProgress), 100);
                     this.Invoke(new RefreshTextDelegate(RefreshText), "Finished! \n");
@@ -186,8 +186,8 @@ namespace EncrypterKaoti
                     //zpн*f&jc/uj$M3p=Ohw0ЩЩhґx1lL*
                     long ind = index;
                     long longi = input.Length;
-                    var total = (1000000 * 7 * ind / longi).ToString();
-                    var total10 = (1000000 * 10 * ind / longi).ToString();
+                    var total = (5000000 * 7 * ind / longi).ToString();
+                    var total10 = (5000000 * 10 * ind / longi).ToString();
 
                     this.Invoke(new RefreshTextDelegate(RefreshData), "Longitud total: "+input.Length + "      |   Status: Encrypting.." +"      |    percent: " + total10 +  "   |   Index: " + ind);
                     this.Invoke(new RefreshProgressDelegate(RefreshProgress), Convert.ToInt32(total));
