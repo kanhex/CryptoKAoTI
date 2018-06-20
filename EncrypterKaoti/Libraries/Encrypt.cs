@@ -62,7 +62,16 @@ namespace EncrypterKaoti
             }
             return res.ToString();
         }
-        
+
+
+
+        public static byte[] generateKeyBytes(int PassLenght = 512)
+        {
+            RijndaelManaged expr_05 = new RijndaelManaged();
+            expr_05.KeySize = PassLenght;
+            expr_05.GenerateKey();
+            return expr_05.Key;
+        }
 
     }
 }

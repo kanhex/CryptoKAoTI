@@ -16,9 +16,9 @@ namespace EncrypterKaoti
 {
     public partial class decryptForm : Form
     {
-        String pass;
+        bool isfile = true;
+        String pass = "";
         string filename;
-        public OpenFileDialog SFTE = new OpenFileDialog();
         public OpenFileDialog SFTD = new OpenFileDialog();
 
         public decryptForm()
@@ -51,14 +51,53 @@ namespace EncrypterKaoti
         {
             pass = Pass4Decryption.Text;
             filename = EncryptFileDir.Text;
-            dialogD dial = new dialogD(filename, pass);
-            dial.Show();
+            if (filename != "" && pass != "")
+            {
+
+                dialogD dial = new dialogD(filename, pass, isfile);
+                dial.Show();
+            }
+            else
+            {
+                MessageBox.Show(""
+                    + ((filename == "") ? "Please select a file to Decrypt. \n" : "")
+                    + ((pass == "") ? "Please Write the password or select a Password file. \n" : "")
+                    );
+            }
+
 
 
 
         }
 
+        private void PassFileRBTN_CheckedChanged(object sender, EventArgs e)
+        {
+            button1.Visible = true;
+            Pass4Decryption.Visible = true;
+            LabelPassDecrypt.Visible = false;
+            textBox1.Visible = false;
+            isfile = true;
+            pass = Pass4Decryption.Text;
+        }
 
-        
+        private void PassTextRBTN_CheckedChanged(object sender, EventArgs e)
+        {
+            button1.Visible = false;
+            Pass4Decryption.Visible = false;
+            LabelPassDecrypt.Visible = true;
+            textBox1.Visible = true;
+            isfile = false;
+            pass = textBox1.Text;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SFTD.Title = "Please Open Key File";
+            SFTD.Filter = "XKey Files *.Xk3y|*.Xk3y";
+            if (SFTD.ShowDialog() == DialogResult.OK)
+            {
+                Pass4Decryption.Text = SFTD.FileName;
+            }
+        }
     }
 }

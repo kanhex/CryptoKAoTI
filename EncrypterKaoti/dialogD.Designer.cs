@@ -82,9 +82,8 @@
             this.statusLbl.Location = new System.Drawing.Point(12, 31);
             this.statusLbl.Name = "statusLbl";
             this.statusLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.statusLbl.Size = new System.Drawing.Size(79, 22);
+            this.statusLbl.Size = new System.Drawing.Size(0, 21);
             this.statusLbl.TabIndex = 24;
-            this.statusLbl.Text = "STATUS:  ";
             this.statusLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.statusLbl.UseCompatibleTextRendering = true;
             // 

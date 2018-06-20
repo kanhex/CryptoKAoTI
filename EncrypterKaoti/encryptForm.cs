@@ -16,10 +16,12 @@ namespace EncrypterKaoti
 {
     public partial class encryptForm : Form
     {
-        String pass;
+         String pass;
+         bool isfile;
         string filename;
         public OpenFileDialog SFTE = new OpenFileDialog();
-        public OpenFileDialog SFTD = new OpenFileDialog();
+        PasswordGen passG ;
+
 
         public encryptForm()
         {
@@ -28,14 +30,18 @@ namespace EncrypterKaoti
 
         private void genPassBtn_Click(object sender, EventArgs e)
         {
-            pass = Encrypt.CreatePassword(Convert.ToInt32(IntPassLenght.Value));
-            Pass4Decryption.Text = pass;
+
+            passG = new PasswordGen(EncryptFileDir.Text);
+            passG.ShowInTaskbar = false;
+            passG.ShowDialog();
+            
+            
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
             EncryptFileDir.Text = null;
-            Pass4Decryption.Text = null;
+            pass = null;
             pass = null;
         }
 
@@ -45,22 +51,38 @@ namespace EncrypterKaoti
             if (SFTE.ShowDialog() == DialogResult.OK)
             {
                 EncryptFileDir.Text = SFTE.FileName;
+                genPassBtn.Visible = true;
             }
         }
         
 
         private void EncryptButton_Click(object sender, EventArgs e)
         {
-
             filename = EncryptFileDir.Text;
-            dialog dial = new dialog(filename, pass);
-            dial.Show();
-
+            pass = passG.pass;
+            isfile = passG.isFile;
+            if (filename != "" && pass != "")
+            {
+                
+                filename = EncryptFileDir.Text;
+                dialog dial = new dialog(filename, pass, isfile);
+                dial.Show();
+            }
+            else{
+                MessageBox.Show(""
+                    + ((filename == "") ? "Please select a file to Decrypt. \n" : "")
+                    + ((pass == "") ? "Please Generate a Password. \n" : "")
+                    );
+            }
 
 
         }
 
 
-        
+
+
+       
+
+
     }
 }

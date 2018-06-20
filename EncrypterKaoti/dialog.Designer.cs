@@ -35,6 +35,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.encryptProgress = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // stopBtn
@@ -43,7 +44,7 @@
             this.stopBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stopBtn.Font = new System.Drawing.Font("Lucida Console", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stopBtn.ForeColor = System.Drawing.Color.Red;
-            this.stopBtn.Location = new System.Drawing.Point(655, 90);
+            this.stopBtn.Location = new System.Drawing.Point(834, 90);
             this.stopBtn.Name = "stopBtn";
             this.stopBtn.Size = new System.Drawing.Size(159, 26);
             this.stopBtn.TabIndex = 19;
@@ -58,7 +59,7 @@
             this.Progress.Location = new System.Drawing.Point(16, 58);
             this.Progress.Name = "Progress";
             this.Progress.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Progress.Size = new System.Drawing.Size(633, 26);
+            this.Progress.Size = new System.Drawing.Size(812, 26);
             this.Progress.Step = 1;
             this.Progress.TabIndex = 22;
             // 
@@ -81,9 +82,8 @@
             this.statusLbl.Location = new System.Drawing.Point(12, 31);
             this.statusLbl.Name = "statusLbl";
             this.statusLbl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.statusLbl.Size = new System.Drawing.Size(91, 24);
+            this.statusLbl.Size = new System.Drawing.Size(0, 22);
             this.statusLbl.TabIndex = 24;
-            this.statusLbl.Text = "STATUS:  ";
             this.statusLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.statusLbl.UseCompatibleTextRendering = true;
             // 
@@ -98,7 +98,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(797, 137);
+            this.textBox1.Size = new System.Drawing.Size(981, 137);
             this.textBox1.TabIndex = 25;
             this.textBox1.Text = "Encrypting...";
             // 
@@ -109,7 +109,7 @@
             this.encryptProgress.Location = new System.Drawing.Point(16, 90);
             this.encryptProgress.Name = "encryptProgress";
             this.encryptProgress.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.encryptProgress.Size = new System.Drawing.Size(633, 26);
+            this.encryptProgress.Size = new System.Drawing.Size(812, 26);
             this.encryptProgress.Step = 1;
             this.encryptProgress.TabIndex = 26;
             // 
@@ -119,7 +119,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Lucida Console", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(655, 58);
+            this.button1.Location = new System.Drawing.Point(834, 58);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(159, 26);
             this.button1.TabIndex = 27;
@@ -127,13 +127,28 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Lucida Console", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Red;
+            this.button2.Location = new System.Drawing.Point(972, 10);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(21, 21);
+            this.button2.TabIndex = 29;
+            this.button2.Text = "X";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.CancelButton = this.stopBtn;
-            this.ClientSize = new System.Drawing.Size(821, 271);
+            this.ClientSize = new System.Drawing.Size(1005, 271);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.encryptProgress);
             this.Controls.Add(this.textBox1);
@@ -159,5 +174,6 @@
         public System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.ProgressBar encryptProgress;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

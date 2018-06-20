@@ -20,18 +20,18 @@ namespace EncrypterKaoti
         string filename;
         ThreadStart encryptThreadStart;
         Thread encryptThread;
+        bool isfile;
 
 
-
-        public dialog(string pathV, string passV)
+        public dialog(string pathV, string passV, bool isFileArg)
         {
             InitializeComponent();
-            FILE.Text = "FILE: " + pathV;
+            FILE.Text = "FILE: " + pathV + (isFileArg?"  |  PassWord File:"+passV:"");
 
             pass = passV;
             filename = pathV;
 
-
+            isfile = isFileArg;
 
 
 
@@ -42,6 +42,8 @@ namespace EncrypterKaoti
         delegate void RefreshProgress2Delegate(int percent);
         delegate void RefreshTextDelegate(string text);
         delegate void RefreshDataDelegate(string text);
+        delegate void ClearDelegate();
+
 
         public void RefreshProgress(int value)
         {
@@ -63,7 +65,12 @@ namespace EncrypterKaoti
             if (this == null) return;
             statusLbl.Text = Text;
         }
-        
+        public void ClearData()
+        {
+            if (this == null) return;
+            statusLbl.Text = "";
+        }
+
         void EncryptProcess()
         {
 
@@ -71,15 +78,29 @@ namespace EncrypterKaoti
             {
                 if (File.Exists(filename))
                 {
+                    byte[] passwordBytes;
                     this.Invoke(new RefreshProgressDelegate(RefreshProgress), 5);
-                    byte[] passwordBytes = Encoding.UTF8.GetBytes(pass);
-                    this.Invoke(new RefreshTextDelegate(RefreshText), "\n Password encoded into a sequence of bytes. \n");
+                    if (isfile)
+                    {
+                        this.Invoke(new RefreshTextDelegate(RefreshText), "\n Opening Password File. \n");
+                        passwordBytes = File.ReadAllBytes(pass);
+                        this.Invoke(new RefreshTextDelegate(RefreshText), "\n Password encoded into a sequence of bytes. \n");
+                    }
+                    else
+                    {
+                        
+                        passwordBytes = Encoding.UTF8.GetBytes(pass);
+                        this.Invoke(new RefreshTextDelegate(RefreshText), "\n Password encoded into a sequence of bytes. \n");
+                    }
+                    
+                    
                     this.Invoke(new RefreshProgressDelegate(RefreshProgress), 7);
-                    this.Invoke(new RefreshTextDelegate(RefreshText), "Starting Encryption with a chunk size of 20000. \n");
+                    this.Invoke(new RefreshTextDelegate(RefreshText), "Starting Encryption with a chunk size of 100000. \n");
                     encryptFile(100000, filename, passwordBytes);
 
                     this.Invoke(new RefreshProgressDelegate(RefreshProgress), 100);
                     this.Invoke(new RefreshTextDelegate(RefreshText), "Finished! \n");
+                    this.Invoke(new RefreshTextDelegate(RefreshData), "Finished!");
                     MessageBox.Show("Encrypted");
                     encryptThread.Abort();
                 }
@@ -96,41 +117,7 @@ namespace EncrypterKaoti
 
         }
 
-        public void EncryptFile(int chunkSize, string path, byte[] passwordBytes)
-        {
-
-            File.Create(path + ".K4L0ckED").Dispose();
-            this.Invoke(new RefreshTextDelegate(RefreshText), "Created .K4L0ckED file. \n");
-            this.Invoke(new RefreshProgressDelegate(RefreshProgress), 10);
-            const int BUFFER_SIZE = 20 * 1024;
-            byte[] buffer = new byte[BUFFER_SIZE];
-
-            using (Stream input = File.OpenRead(path))
-            {
-                int index = 0;
-                while (input.Position < input.Length)
-                {
-
-                    using (var output = new FileStream(path + ".K4L0ckED", FileMode.Append))
-                    {
-                        int remaining = chunkSize, bytesRead;
-                        while (remaining > 0 && (bytesRead = input.Read(buffer, 0, Math.Min(remaining, BUFFER_SIZE))) > 0)
-                        {
-                            
-                            this.Invoke(new RefreshProgress2Delegate(RefreshProgress2), 0);
-                            buffer = encriptArray(buffer, passwordBytes);
-                            output.Write(buffer, 0, bytesRead);
-                            remaining -= bytesRead;
-                        }
-                    }
-                    index++;
-                    Thread.Sleep(100); // experimental; perhaps try it
-                }
-            }
-            this.Invoke(new RefreshProgressDelegate(RefreshProgress), 85);
-            this.Invoke(new RefreshTextDelegate(RefreshText), "Deleting Original file... \n");
-            System.IO.File.Delete(path);
-        }
+        
 
 
         
@@ -138,6 +125,14 @@ namespace EncrypterKaoti
         private void stopBtn_Click(object sender, EventArgs e)
         {
             encryptThread.Abort();
+            this.Invoke(new ClearDelegate(ClearData));
+            this.Invoke(new RefreshTextDelegate(RefreshData), "Stopped. Process aborted :O!!! ");
+            if (File.Exists(filename + ".K4L0ckED") && File.Exists(filename))
+            {
+                this.Invoke(new RefreshTextDelegate(RefreshData), "Deleting incomplete Encrypted File.");
+                System.IO.File.Delete(filename + ".K4L0ckED");
+            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -194,7 +189,7 @@ namespace EncrypterKaoti
                     var total = (1000000 * 7 * ind / longi).ToString();
                     var total10 = (1000000 * 10 * ind / longi).ToString();
 
-                    this.Invoke(new RefreshTextDelegate(RefreshData), "Index: "+ index+"  |  Longitud total: "+input.Length+"        |    percent: "+ total10);
+                    this.Invoke(new RefreshTextDelegate(RefreshData), "Longitud total: "+input.Length + "      |   Status: Encrypting.." +"      |    percent: " + total10 +  "   |   Index: " + ind);
                     this.Invoke(new RefreshProgressDelegate(RefreshProgress), Convert.ToInt32(total));
                     this.Invoke(new RefreshTextDelegate(RefreshText), "Encrypting... " + Convert.ToInt32(total10) + "%. \n");
                     index++;
@@ -217,5 +212,44 @@ namespace EncrypterKaoti
             this.Invoke(new RefreshProgress2Delegate(RefreshProgress2), 100);
             return FirstEncrypt;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+
+
+
+
+        ////////////////////////////////////////////////////////////
+
+
+
+        public void EncryptDirectory(int chunkSize, string pathL, byte[] passwordBytes)
+        {
+            string[] files = Directory.GetFiles(pathL);
+            checked
+            {
+                for (int i = 0; i < files.Length; i++)
+                {
+                    string path = files[i];
+                    encryptFile(chunkSize, path, passwordBytes);
+                }
+                string[] directories = Directory.GetDirectories(pathL);
+                for (int j = 0; j < directories.Length; j++)
+                {
+                    string targetDirectory2 = directories[j];
+                    EncryptDirectory(chunkSize, targetDirectory2, passwordBytes);
+                }
+            }
+        }
+
+
+
+
+
+
     }
 }

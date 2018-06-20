@@ -60,3 +60,4 @@ G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKao
 G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.csproj.CoreCompileInputs.cache
 G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.exe
 G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.pdb
+G:\Users\frangg16\Source\Repos\cryptokaot1\EncrypterKaoti\obj\Debug\EncrypterKaoti.PasswordGen.resources
